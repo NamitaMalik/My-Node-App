@@ -1,0 +1,28 @@
+{
+  "name": "My-Node-App",
+  "version": "1.0.0",
+  "description": "Sample node app",
+  "main": "mongo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NamitaMalik/My-Node-App.git"
+  },
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "nodejs"
+  ],
+  "author": "Namita Malik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NamitaMalik/My-Node-App/issues"
+  },
+  "homepage": "https://github.com/NamitaMalik/My-Node-App",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.14"
+  }
+}
