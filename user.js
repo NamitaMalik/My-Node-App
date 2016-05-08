@@ -71,6 +71,18 @@ app.post('/user',function(req,res){
     });
 });
 
+app.put('/user/:_id', function (req, res) {
+    var _id = req.params._id;
+    User.update({_id:_id},req.body,function (error, result) {
+        if (error) {
+            res.json({error: error})
+        }
+        else {
+            res.json({result: result})
+        }
+    });
+});
+
 
 
 app.listen(3000, function () {
