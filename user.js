@@ -14,28 +14,11 @@ var User = mongoose.model('User', {
     age: Number
 });
 
-var p1 = new User({
-    firstName: 'Krishna',
-    lastName: 'Govind',
-    userName: 'krishna.govind',
-    email: 'krishna.govind@gmail.com',
-    mobNumber: '9087654320',
-    age: 34
-});
-p1.save(function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('Saved Successfully!');
-        User.find(function (error, result) {
-            console.log(error);
-            console.log(result);
-        });
-    }
-});
-
 var express = require('express');
+var bodyParser = require('body-parser');
+
 var app = express();
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
@@ -63,6 +46,31 @@ app.get('/user/:_id', function (req, res) {
         }
     });
 });
+
+app.delete('/user/:_id', function (req, res) {
+    var _id = req.params._id;
+    User.remove({_id:_id},function (error, result) {
+        if (error) {
+            res.json({error: error})
+        }
+        else {
+            res.json({result: result})
+        }
+    });
+});
+
+app.post('/user',function(req,res){
+    var p2 = new User(req.body);
+    p2.save(function(error,result){
+       if(error){
+           res.json({error:error});
+       }
+        else{
+           res.json({result:result});
+       }
+    });
+});
+
 
 
 app.listen(3000, function () {
