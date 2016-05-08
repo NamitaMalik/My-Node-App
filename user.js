@@ -5,17 +5,9 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
-var User = mongoose.model('User', {
-    firstName: String,
-    lastName: String,
-    userName: String,
-    email: String,
-    mobNumber: String,
-    age: Number
-});
-
 var express = require('express');
 var bodyParser = require('body-parser');
+var User = require('./user.domain.js');
 
 var app = express();
 app.use(bodyParser.json());
