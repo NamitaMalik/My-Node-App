@@ -3,14 +3,15 @@
  */
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/RMLL');
 
 var express = require('express');
 var bodyParser = require('body-parser');
 
 var app = express();
 app.use(bodyParser.json());
-require('./user.controller.js')(app);
+require('./tenant.controller.js')(app);
+require('./house.controller.js')(app);
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });

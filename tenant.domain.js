@@ -3,12 +3,12 @@
  */
 
 var mongoose = require('mongoose');
-var User = mongoose.model('User', {
+var Tenant = mongoose.model('Tenant', {
     firstName: {type: String, required: [true, 'First Name is mandatory field.']},
     lastName: String,
     userName: {type: String, required: true},
     email: {type: String, required: true},
     mobNumber: {type: String, required: true},
-    age: {type: Number, min: [18, 'Minimum age should be 18'], max: [35, 'Maximum age should be 35']}
+    age: {type: Number, min: [18, 'Minimum age should be 18']}
 });
-module.exports = User;
+module.exports = Tenant;

@@ -1,34 +1,34 @@
 /**
  * Created by namita on 5/9/16.
  */
-var User = require('./user.domain.js');
+var Tenant = require('./tenant.domain.js');
 module.exports = function(app){
-    app.get('/user', function (req, res) {
-        User.find(function (error, users) {
+    app.get('/tenant', function (req, res) {
+        Tenant.find(function (error, tenants) {
             if (error) {
                 res.json({error: error})
             }
             else {
-                res.json({users: users})
+                res.json({tenants: tenants})
             }
         });
     });
 
-    app.get('/user/:_id', function (req, res) {
+    app.get('/tenant/:_id', function (req, res) {
         var _id = req.params._id;
-        User.findById(_id,function (error, user) {
+        Tenant.findById(_id,function (error, tenant) {
             if (error) {
                 res.json({error: error})
             }
             else {
-                res.json({user: user})
+                res.json({tenant: tenant})
             }
         });
     });
 
-    app.delete('/user/:_id', function (req, res) {
+    app.delete('/tenant/:_id', function (req, res) {
         var _id = req.params._id;
-        User.remove({_id:_id},function (error, result) {
+        Tenant.remove({_id:_id},function (error, result) {
             if (error) {
                 res.json({error: error})
             }
@@ -38,8 +38,8 @@ module.exports = function(app){
         });
     });
 
-    app.post('/user',function(req,res){
-        var p2 = new User(req.body);
+    app.post('/tenant',function(req,res){
+        var p2 = new Tenant(req.body);
         p2.save(function(error,result){
             if(error){
                 res.json({error:error});
@@ -50,9 +50,9 @@ module.exports = function(app){
         });
     });
 
-    app.put('/user/:_id', function (req, res) {
+    app.put('/tenant/:_id', function (req, res) {
         var _id = req.params._id;
-        User.update({_id:_id},req.body,function (error, result) {
+        Tenant.update({_id:_id},req.body,function (error, result) {
             if (error) {
                 res.json({error: error})
             }
