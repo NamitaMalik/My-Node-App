@@ -12,6 +12,7 @@ var app = express();
 app.use(bodyParser.json());
 require('./tenant.controller.js')(app);
 require('./house.controller.js')(app);
+require('./landlord.controller.js')(app);
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
