@@ -9,7 +9,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var app = express();
-app.set('superSecret','iloveyou');
 app.use(bodyParser.json());
 
 require('./server/tenant/tenant.controller.js')(app);
