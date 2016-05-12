@@ -9,13 +9,12 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var app = express();
-app.set('superSecret','ilovescotchyscotch');
+app.set('superSecret','iloveyou');
 app.use(bodyParser.json());
 
 require('./server/tenant/tenant.controller.js')(app);
 require('./server/house/house.controller.js')(app);
 require('./server/landlord/landlord.controller.js')(app);
-require('./server/user/user.controller.js')(app);
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });

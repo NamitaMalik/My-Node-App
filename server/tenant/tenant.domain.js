@@ -9,6 +9,7 @@ var Tenant = mongoose.model('Tenant', {
     userName: {type: String, required: true},
     email: {type: String, required: true},
     mobNumber: {type: String, required: true},
-    age: {type: Number, min: [18, 'Minimum age should be 18']}
+    age: {type: Number, min: [18, 'Minimum age should be 18']},
+    password: {type: String, required: true}
 });
 module.exports = Tenant;
