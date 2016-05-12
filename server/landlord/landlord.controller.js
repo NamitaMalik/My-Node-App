@@ -3,9 +3,28 @@
  */
 var Landlord = require('./landlord.domain.js');
 var jwt = require('jsonwebtoken');
+var secret = 'learningtoauthenticate';
 
 module.exports = function (app) {
-    app.get('/landlord', function (req, res) {
+
+    function authenticate(req,res,next){
+        var token = req.headers['x-access-token'] ;
+        if(!token){
+            res.json({error:'Unable to authenticate!'});
+        }
+        else{
+            jwt.verify(token,secret,function(error,decodedObject){
+                if(error){
+                    res.json({error:error});
+                }
+                else{
+                    next();
+                }
+            });
+        }
+    }
+
+    app.get('/landlord',authenticate, function (req, res) {
         Landlord.find(function (error, landlords) {
             if (error) {
                 res.json({error: error})
@@ -73,7 +92,7 @@ module.exports = function (app) {
                 res.json({error: error});
             }
             else if (landlord) {
-                var token = jwt.sign(landlord, 'learningtoauthenticate', {expiresIn: '1h'});
+                var token = jwt.sign(landlord, secret, {expiresIn: '1h'});
                 res.json({token: token});
             }
             else {
