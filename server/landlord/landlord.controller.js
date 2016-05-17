@@ -35,7 +35,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/landlord/:_id', function (req, res) {
+    app.get('/landlord/:_id/',authenticate, function (req, res) {
         var _id = req.params._id;
         Landlord.findById(_id, function (error, landlord) {
             if (error) {
@@ -47,7 +47,7 @@ module.exports = function (app) {
         });
     });
 
-    app.delete('/landlord/:_id', function (req, res) {
+    app.delete('/landlord/:_id',authenticate, function (req, res) {
         var _id = req.params._id;
         Landlord.remove({_id: _id}, function (error, result) {
             if (error) {
@@ -59,7 +59,7 @@ module.exports = function (app) {
         });
     });
 
-    app.post('/landlord', function (req, res) {
+    app.post('/landlord',authenticate, function (req, res) {
         var p2 = new Landlord(req.body);
         p2.save(function (error, result) {
             if (error) {
@@ -71,7 +71,7 @@ module.exports = function (app) {
         });
     });
 
-    app.put('/landlord/:_id', function (req, res) {
+    app.put('/landlord/:_id',authenticate, function (req, res) {
         var _id = req.params._id;
         Landlord.update({_id: _id}, req.body, function (error, result) {
             if (error) {
